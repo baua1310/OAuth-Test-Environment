@@ -1,6 +1,5 @@
 package de.uniregensburg.oauthclient.util;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -35,20 +34,23 @@ public class PKCE {
     }
 
     public static String generateCodeChallange(String code) throws PKCEException {
-        return generateCodeChallange(code, "S256");
+        return generateCodeChallange(code, CodeChallangeMethod.S256);
     }
 
-    public static String generateCodeChallange(String code, String transformation) throws PKCEException {
-        if (!transformation.equals("S256") && !transformation.equals("plain")) {
+    public static String generateCodeChallange(String code, CodeChallangeMethod transformation) throws PKCEException {
+        if (transformation == null) {
+            throw new PKCEException("Please select one of the available transformations 'S256' or 'plain'");
+        }
+        if (!transformation.equals(CodeChallangeMethod.S256) && !transformation.equals(CodeChallangeMethod.PLAIN)) {
             throw new PKCEException("Please select one of the available transformations 'S256' or 'plain'");
         }
         if (code == null || code.isEmpty()) {
             throw new PKCEException("Empty code entered");
         }
-        if (transformation.equals("plain")) {
+        if (transformation.equals(CodeChallangeMethod.PLAIN)) {
             return code;
         }
-        if (transformation.equals("S256")) {
+        if (transformation.equals(CodeChallangeMethod.S256)) {
             byte[] sha256 = sha256(code);
             return Base64.getUrlEncoder().withoutPadding().encodeToString(sha256);
         }

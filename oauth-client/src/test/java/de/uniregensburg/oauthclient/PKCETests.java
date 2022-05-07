@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import de.uniregensburg.oauthclient.util.CodeChallangeMethod;
 import de.uniregensburg.oauthclient.util.PKCE;
 import de.uniregensburg.oauthclient.util.PKCEException;
 
@@ -53,10 +54,10 @@ public class PKCETests {
     }
 
     @Test
-    public void testGenerateCodeChallangeWrongTransformation() {
+    public void testGenerateCodeChallangeTransformationNull() {
         Exception exception = assertThrows(PKCEException.class, () -> {
             String code = null;
-            String transformation = "wrong";
+            CodeChallangeMethod transformation = null;
             PKCE.generateCodeChallange(code, transformation);
         });
     
@@ -95,7 +96,7 @@ public class PKCETests {
     @Test
     public void testGenerateCodeChallangePlain() throws PKCEException {
         String code = "Test";
-        String transformation = "plain";
+        CodeChallangeMethod transformation = CodeChallangeMethod.PLAIN;
     
         String codeChallange = PKCE.generateCodeChallange(code, transformation);
 
@@ -105,7 +106,7 @@ public class PKCETests {
     @Test
     public void testGenerateCodeChallangeS256() throws PKCEException {
         String code = "No2e8.K7lBhdO2GaRhfLkyj-ayHSrKY9aCt.-IzQiJgSnwNWf9Whk0EKZ42j04~2nf0ubUyu~YU8Ea7q2HB5cvSVmAdOw8dfCWTQbt_gFgDXxFJAGCFLNUxgogTuYylS";
-        String transformation = "S256";
+        CodeChallangeMethod transformation = CodeChallangeMethod.S256;
         String expectedString = "9WvZ3Irc0Wokcvb_Y-PwSCrMO6MRwVYXL4I-rvZrqnw";
     
         String codeChallange = PKCE.generateCodeChallange(code, transformation);
