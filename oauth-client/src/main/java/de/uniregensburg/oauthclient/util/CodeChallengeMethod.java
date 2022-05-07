@@ -1,12 +1,12 @@
 package de.uniregensburg.oauthclient.util;
 
-public enum CodeChallangeMethod {
+public enum CodeChallengeMethod {
     PLAIN("plain"),
     S256("S256");
 
     private final String method;
 
-    CodeChallangeMethod(final String method) {
+    CodeChallengeMethod(final String method) {
         this.method = method;
     }
 

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import de.uniregensburg.oauthclient.util.CodeChallangeMethod;
+import de.uniregensburg.oauthclient.util.CodeChallengeMethod;
 import de.uniregensburg.oauthclient.util.PKCE;
 import de.uniregensburg.oauthclient.util.PKCEException;
 
@@ -54,11 +54,11 @@ public class PKCETests {
     }
 
     @Test
-    public void testGenerateCodeChallangeTransformationNull() {
+    public void testGenerateCodeChallengeTransformationNull() {
         Exception exception = assertThrows(PKCEException.class, () -> {
             String code = null;
-            CodeChallangeMethod transformation = null;
-            PKCE.generateCodeChallange(code, transformation);
+            CodeChallengeMethod transformation = null;
+            PKCE.generateCodeChallenge(code, transformation);
         });
     
         String expectedMessage = "Please select one of the available transformations 'S256' or 'plain'";
@@ -68,10 +68,10 @@ public class PKCETests {
     }
 
     @Test
-    public void testGenerateCodeChallangeCodeEmpty() {
+    public void testGenerateCodeChallengeCodeEmpty() {
         Exception exception = assertThrows(PKCEException.class, () -> {
             String code = "";
-            PKCE.generateCodeChallange(code);
+            PKCE.generateCodeChallenge(code);
         });
     
         String expectedMessage = "Empty code entered";
@@ -81,10 +81,10 @@ public class PKCETests {
     }
 
     @Test
-    public void testGenerateCodeChallangeEmptyNull() {
+    public void testGenerateCodeChallengeEmptyNull() {
         Exception exception = assertThrows(PKCEException.class, () -> {
             String code = null;
-            PKCE.generateCodeChallange(code);
+            PKCE.generateCodeChallenge(code);
         });
     
         String expectedMessage = "Empty code entered";
@@ -94,24 +94,24 @@ public class PKCETests {
     }
 
     @Test
-    public void testGenerateCodeChallangePlain() throws PKCEException {
+    public void testGenerateCodeChallengePlain() throws PKCEException {
         String code = "Test";
-        CodeChallangeMethod transformation = CodeChallangeMethod.PLAIN;
+        CodeChallengeMethod transformation = CodeChallengeMethod.PLAIN;
     
-        String codeChallange = PKCE.generateCodeChallange(code, transformation);
+        String codeChallenge = PKCE.generateCodeChallenge(code, transformation);
 
-        assertTrue(codeChallange.equals(code));
+        assertTrue(codeChallenge.equals(code));
     }
 
     @Test
-    public void testGenerateCodeChallangeS256() throws PKCEException {
+    public void testGenerateCodeChallengeS256() throws PKCEException {
         String code = "No2e8.K7lBhdO2GaRhfLkyj-ayHSrKY9aCt.-IzQiJgSnwNWf9Whk0EKZ42j04~2nf0ubUyu~YU8Ea7q2HB5cvSVmAdOw8dfCWTQbt_gFgDXxFJAGCFLNUxgogTuYylS";
-        CodeChallangeMethod transformation = CodeChallangeMethod.S256;
+        CodeChallengeMethod transformation = CodeChallengeMethod.S256;
         String expectedString = "9WvZ3Irc0Wokcvb_Y-PwSCrMO6MRwVYXL4I-rvZrqnw";
     
-        String codeChallange = PKCE.generateCodeChallange(code, transformation);
+        String codeChallenge = PKCE.generateCodeChallenge(code, transformation);
 
-        assertTrue(codeChallange.equals(expectedString));
+        assertTrue(codeChallenge.equals(expectedString));
     }
 
     @Test
