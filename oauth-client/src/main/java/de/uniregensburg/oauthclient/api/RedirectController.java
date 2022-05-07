@@ -1,4 +1,4 @@
-package de.uniregensburg.oauthclient.app;
+package de.uniregensburg.oauthclient.api;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
