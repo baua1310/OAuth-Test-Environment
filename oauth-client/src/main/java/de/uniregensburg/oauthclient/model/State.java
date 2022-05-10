@@ -16,7 +16,7 @@ public class State {
     protected State() {}
 
     public State(String redirectUri) {
-        this(redirectUri, "");
+        this.redirectUri = redirectUri;
     }
 
     public State(String redirectUri, String codeVerifier) {
