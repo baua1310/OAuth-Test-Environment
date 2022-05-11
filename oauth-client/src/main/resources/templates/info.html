@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>WebApp - Info</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div th:if="${loggedIn}">
+        <span th:text="'Hello ' + ${name} + '!'"></span>
+    </div>
+
+    <div th:unless="${loggedIn}">
+        <span>Please log in first</span>
+        <button><a href="/webapp/login">Login</a></button>
+    </div>
+</body>
+</html>
