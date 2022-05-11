@@ -32,8 +32,8 @@ public class LoginController {
     public RedirectView login(RedirectAttributes attributes) {
         String responseType = ResponseType.CODE.toString(); // TODO
         String codeChallengeMethod = CodeChallengeMethod.S256.toString();
-        State state = new State("http://localhost:8080/login"); // TODO 
-        String scope = "photos"; // TODO
+        State state = new State("/webapp/info"); // TODO 
+        String scope = "photos profile openid"; // TODO
 
         String codeChallenge = null;
         try {
