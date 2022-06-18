@@ -20,13 +20,13 @@ public class DemoController {
     private WebClient webClient;
 
     @GetMapping(value = "/demo")
-    public String[] getDemo(@RegisteredOAuth2AuthorizedClient("demo-client-authorization-code") OAuth2AuthorizedClient authorizedClient) {
+    public String getDemo(@RegisteredOAuth2AuthorizedClient("demo-client-authorization-code") OAuth2AuthorizedClient authorizedClient) {
         return this.webClient
             .get()
             .uri("http://127.0.0.1:8090/demo")
             .attributes(oauth2AuthorizedClient(authorizedClient))
             .retrieve()
-            .bodyToMono(String[].class)
+            .bodyToMono(String.class)
             .block();
     }
 }
