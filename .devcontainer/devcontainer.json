@@ -14,6 +14,9 @@
 			"INSTALL_GRADLE": "true",
 		}
 	},
+	"runArgs": [
+		"--add-host=auth-server:127.0.0.1"
+	],
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
