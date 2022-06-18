@@ -20,19 +20,19 @@ public class DefaultSecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests(authorizeRequests ->
-          authorizeRequests.anyRequest().authenticated()
+            authorizeRequests.anyRequest().authenticated()
         )
-          .formLogin(withDefaults());
+        .formLogin(withDefaults());
         return http.build();
     }
 
     @Bean
     UserDetailsService users() {
         UserDetails user = User.withDefaultPasswordEncoder()
-          .username("user")
-          .password("password")
-          .roles("USER")
-          .build();
+            .username("user")
+            .password("password")
+            .roles("USER")
+            .build();
         return new InMemoryUserDetailsManager(user);
     }
 }

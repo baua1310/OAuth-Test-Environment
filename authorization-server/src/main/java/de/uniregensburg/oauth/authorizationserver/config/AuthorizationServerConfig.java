@@ -28,6 +28,10 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.UUID;
 
+/*
+ * Source: https://github.com/Baeldung/spring-security-oauth/tree/master/oauth-authorization-server
+ */
+
 @Configuration
 public class AuthorizationServerConfig {
 
@@ -41,19 +45,18 @@ public class AuthorizationServerConfig {
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-          .clientId("demo-client")
-          .clientSecret("{noop}secret")
-          .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-          .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-          .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-          .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-          .redirectUri("http://127.0.0.1:8080/login/oauth2/code/articles-client-oidc")
-          .redirectUri("http://127.0.0.1:8080/authorized")
-          .redirectUri("http://127.0.0.1:8080/webapp/redirect")
-          .scope(OidcScopes.OPENID)
-          .scope("demo")
-          .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
-          .build();
+            .clientId("demo-client")
+            .clientSecret("{noop}secret")
+            .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+            .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+            .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+            .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+            .redirectUri("http://127.0.0.1:8080/login/oauth2/code/demo-client-oidc")
+            .redirectUri("http://127.0.0.1:8080/authorized")
+            .scope(OidcScopes.OPENID)
+            .scope("demo")
+            .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
+            .build();
 
         return new InMemoryRegisteredClientRepository(registeredClient);
     }
@@ -70,9 +73,9 @@ public class AuthorizationServerConfig {
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
         return new RSAKey.Builder(publicKey)
-          .privateKey(privateKey)
-          .keyID(UUID.randomUUID().toString())
-          .build();
+            .privateKey(privateKey)
+            .keyID(UUID.randomUUID().toString())
+            .build();
     }
 
     private static KeyPair generateRsaKey() {
