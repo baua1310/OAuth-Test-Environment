@@ -31,6 +31,10 @@ services:
 
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
     # (Adding the "ports" property to this file will not forward from a Codespace.)
+    extra_hosts:
+      - "auth-server:127.0.0.1"
+      - "resource-server:127.0.0.1"
+      - "web-client:127.0.0.1"
 
   chrome:
     image: selenium/standalone-chrome:4.2.2-20220622
@@ -39,4 +43,7 @@ services:
     ports:
       - 4444:4444
       - 7900:7900
-  
+    links:
+      - workspace:auth-server
+      - workspace:resource-server
+      - workspace:web-client

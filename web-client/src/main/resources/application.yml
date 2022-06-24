@@ -21,7 +21,7 @@ spring:
             client-id: demo-client
             client-secret: secret
             authorization-grant-type: authorization_code
-            redirect-uri: "http://127.0.0.1:8080/login/oauth2/code/{registrationId}"
+            redirect-uri: "http://web-client:8080/login/oauth2/code/{registrationId}"
             scope: openid
             client-name: demo-client-oidc
           demo-client-authorization-code:
@@ -29,7 +29,7 @@ spring:
             client-id: demo-client
             client-secret: secret
             authorization-grant-type: authorization_code
-            redirect-uri: "http://127.0.0.1:8080/authorized"
+            redirect-uri: "http://web-client:8080/authorized"
             scope: demo
             client-name: demo-client-authorization-code
         provider:
