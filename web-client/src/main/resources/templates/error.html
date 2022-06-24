@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Error</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Something went wrong!</h1>
+    <span th:text="'Status code: ' + ${errorStatus}"></span><br>
+    <span th:text="'Status Description: ' + ${errorStatusDescription}"></span><br>
+    <span th:text="'Error: ' + ${error}"></span><br>
+    <span th:text="'Error description: ' + ${errorDescription}"></span><br>
+    <span>Error Uri: </span>
+    <a th:href="${errorUri}" th:text="${errorUri}"></a><br>
+    <span th:text="'State: ' + ${state}"></span>
+</body>
+</html>
