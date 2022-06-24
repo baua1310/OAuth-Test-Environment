@@ -1,0 +1,22 @@
+plugins {
+	id 'java'
+}
+
+group = 'de.uniregensburg.oauth'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    implementation 'org.seleniumhq.selenium:selenium-java:4.2.2'
+	testImplementation(platform('org.junit:junit-bom:5.8.2'))
+	testImplementation('org.junit.jupiter:junit-jupiter')
+	testImplementation('io.github.bonigarcia:webdrivermanager:5.2.0')
+}
+
+test {
+	useJUnitPlatform()
+}
