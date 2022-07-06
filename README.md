@@ -22,6 +22,9 @@ start by running WebClientApplication class
 Get [VS Code](https://code.visualstudio.com/), [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 
 Add additional hosts to your local hosts file:
+
 auth-server       127.0.0.1
+
 resource-server   127.0.0.1
+
 web-client        127.0.0.1
