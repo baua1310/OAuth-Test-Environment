@@ -18,7 +18,6 @@ public class TestSeleniumTest {
 
             driver.get("https://google.com");
             String title = driver.getTitle();
-            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
             Assertions.assertEquals("Google", title);
         
@@ -75,8 +74,6 @@ public class TestSeleniumTest {
 
             signIn.click();
 
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1)); // set timeout of 1 second
-
             if (driver.findElements(By.id("submit-consent")).size() > 0) {
                 WebElement demo = driver.findElement(By.id("demo"));
                 WebElement submitConsent = driver.findElement(By.id("submit-consent"));
@@ -84,8 +81,6 @@ public class TestSeleniumTest {
                 demo.click();
                 submitConsent.click();
             }
-
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // set timeout of 10 seconds
 
             WebElement body = driver.findElement(By.tagName("body"));
             String actual = body.getText();
@@ -123,11 +118,7 @@ public class TestSeleniumTest {
 
             signIn.click();
 
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1)); // set timeout of 1 second
-
             Assertions.assertTrue(driver.findElements(By.className("alert")).size() > 0);
-            
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // set timeout of 10 seconds
 
             WebElement alert = driver.findElement(By.className("alert"));
             String actual = alert.getText();

@@ -28,10 +28,6 @@ public class WebDriver {
             e.printStackTrace();
         } 
         RemoteWebDriver driver = new RemoteWebDriver(serverurl,options); // get remote web driver
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // set timeout of 10 seconds
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10)); // set timeout of 10 seconds
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(10)); // set timeout of 10 seconds
         
         return driver; // return it
     }
