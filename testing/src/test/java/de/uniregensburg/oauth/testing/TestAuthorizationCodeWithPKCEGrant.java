@@ -89,4 +89,49 @@ public class TestAuthorizationCodeWithPKCEGrant {
             }
         }
     }
+
+    @Test
+    public void test3() {
+        RemoteWebDriver driver = null;
+        try {
+
+            driver = WebDriver.getChromeRemoteWebDriver();
+
+            driver.get("http://web-client:8080/demo");
+            
+            // Login
+
+            WebElement username = driver.findElement(By.name("username"));
+            WebElement password = driver.findElement(By.name("password"));
+            WebElement signIn = driver.findElement(By.className("btn-primary"));
+
+            username.sendKeys("user");
+            password.sendKeys("password");
+
+            signIn.click();
+
+            Assertions.assertTrue(driver.findElements(By.id("submit-consent")).size() > 0);
+            if (driver.findElements(By.id("submit-consent")).size() > 0) {
+                WebElement cancel = driver.findElement(By.id("cancel-consent"));
+
+                cancel.click();
+            }
+
+            WebElement body = driver.findElement(By.tagName("body"));
+            String bodyText = body.getText();
+            String actual = bodyText.substring(bodyText.indexOf("Error:") + 7, bodyText.indexOf("Error:") + 20);
+
+            String expected = "access_denied";
+    
+            Assertions.assertEquals(expected, actual);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (driver != null) {
+                driver.quit();
+            }
+        }
+    }
+
 }
