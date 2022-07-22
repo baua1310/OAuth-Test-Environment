@@ -1,61 +1,15 @@
 package de.uniregensburg.oauth.testing;
 
-import java.time.Duration;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class TestSeleniumTest {
+public class TestAuthorizationCodeWithPKCEGrant {
 
     @Test
-    public void visitGoogle() {
-        RemoteWebDriver driver = null;
-        try  {
-            driver = WebDriver.getChromeRemoteWebDriver();
-
-            driver.get("https://google.com");
-            String title = driver.getTitle();
-
-            Assertions.assertEquals("Google", title);
-        
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (driver != null) {
-                driver.quit();
-            }
-        }
-    }
-
-    @Test
-    public void testRedirectToLogin() {
-        RemoteWebDriver driver = null;
-        try  {
-
-            driver = WebDriver.getChromeRemoteWebDriver();
-
-            driver.get("http://web-client:8080/demo");
-
-            String actual = driver.getTitle();
-
-            String expected = "Please sign in";
-
-            Assertions.assertEquals(expected, actual);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (driver != null) {
-                driver.quit();
-            }
-        }
-    }
-
-    @Test
-    public void testDemo() {
+    public void test1() {
         RemoteWebDriver driver = null;
         try {
 
@@ -99,7 +53,7 @@ public class TestSeleniumTest {
     }
 
     @Test
-    public void testInvalidCredentials() {
+    public void test2() {
         RemoteWebDriver driver = null;
         try {
 

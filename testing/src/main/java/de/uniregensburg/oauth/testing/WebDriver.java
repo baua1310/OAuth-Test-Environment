@@ -2,7 +2,6 @@ package de.uniregensburg.oauth.testing;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
