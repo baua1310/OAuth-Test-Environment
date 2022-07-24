@@ -58,7 +58,15 @@ public class AuthorizationServerConfig {
             .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
             .build();
 
-        return new InMemoryRegisteredClientRepository(registeredClient);
+        RegisteredClient registeredClient2 = RegisteredClient.withId(UUID.randomUUID().toString())
+            .clientId("demo-client-credentials")
+            .clientSecret("{noop}secret2")
+            .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
+            .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+            .scope("demo")
+            .build();
+
+        return new InMemoryRegisteredClientRepository(registeredClient, registeredClient2);
     }
 
     @Bean
