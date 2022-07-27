@@ -11,7 +11,7 @@ public class WebDriver {
     public static RemoteWebDriver getChromeRemoteWebDriver() {
 
         ChromeOptions options = new ChromeOptions(); // configure browser
-        //options.addArguments("headless"); // run headless
+        options.addArguments("headless"); // run headless
         options.addArguments("start-maximized"); // open Browser in maximized mode
         options.addArguments("disable-infobars"); // disabling infobars
         options.addArguments("--disable-extensions"); // disabling extensions
