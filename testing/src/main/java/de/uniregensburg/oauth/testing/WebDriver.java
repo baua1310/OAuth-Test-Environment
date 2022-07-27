@@ -8,9 +8,15 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class WebDriver {
 
+    /**
+     * Configure and return remote chrome web driver 
+     *
+     * @return  remote chrome web driver
+     */
     public static RemoteWebDriver getChromeRemoteWebDriver() {
 
-        ChromeOptions options = new ChromeOptions(); // configure browser
+        // configure chrome
+        ChromeOptions options = new ChromeOptions(); // new chrome options
         options.addArguments("headless"); // run headless
         options.addArguments("start-maximized"); // open Browser in maximized mode
         options.addArguments("disable-infobars"); // disabling infobars
