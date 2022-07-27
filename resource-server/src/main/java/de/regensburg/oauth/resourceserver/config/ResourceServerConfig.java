@@ -8,7 +8,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class ResourceServerConfig {
 
     /** 
-    * 
+    * Security filter chain for demo path
     * 
     * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/resource-server/src/main/java/com/baeldung/config/ResourceServerConfig.java
     * Source: https://github.com/spring-projects/spring-authorization-server/blob/main/samples/messages-resource/src/main/java/sample/config/ResourceServerConfig.java
