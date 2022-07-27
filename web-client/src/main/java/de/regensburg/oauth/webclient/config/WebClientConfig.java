@@ -11,13 +11,18 @@ import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepo
 import org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 
-/*
- * Source: https://github.com/Baeldung/spring-security-oauth/tree/master/oauth-authorization-server
- */
-
 @Configuration
 public class WebClientConfig {
 
+    /** 
+    * Initialize web client with authorized client manager
+    * 
+    * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/client-server/src/main/java/com/baeldung/config/WebClientConfig.java
+    * Source: https://github.com/spring-projects/spring-authorization-server/blob/main/samples/messages-client/src/main/java/sample/config/WebClientConfig.java
+    * 
+    * @param    OAuth2AuthorizedClientManager
+    * @return   web client
+    */
     @Bean
     WebClient webClient(OAuth2AuthorizedClientManager authorizedClientManager) {
         ServletOAuth2AuthorizedClientExchangeFilterFunction oauth2Client =
@@ -27,18 +32,27 @@ public class WebClientConfig {
             .build();
     }
 
+    /** 
+    * Initialize authorized client manager: use authorization code and refresh token
+    * 
+    * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/client-server/src/main/java/com/baeldung/config/WebClientConfig.java
+    * Source: https://github.com/spring-projects/spring-authorization-server/blob/main/samples/messages-client/src/main/java/sample/config/WebClientConfig.java
+    * 
+    * @param    ClientRegistrationRepository
+    * @param    OAuth2AuthorizedClientRepository
+    * @return   authorized client manager
+    */
     @Bean
-    OAuth2AuthorizedClientManager authorizedClientManager(
-      ClientRegistrationRepository clientRegistrationRepository,
-        OAuth2AuthorizedClientRepository authorizedClientRepository) {
+    OAuth2AuthorizedClientManager authorizedClientManager(ClientRegistrationRepository clientRegistrationRepository,
+            OAuth2AuthorizedClientRepository authorizedClientRepository) {
 
         OAuth2AuthorizedClientProvider authorizedClientProvider =
-          OAuth2AuthorizedClientProviderBuilder.builder()
-            .authorizationCode()
-            .refreshToken()
-            .build();
+            OAuth2AuthorizedClientProviderBuilder.builder()
+                .authorizationCode()
+                .refreshToken()
+                .build();
         DefaultOAuth2AuthorizedClientManager authorizedClientManager = new DefaultOAuth2AuthorizedClientManager(
-            clientRegistrationRepository, authorizedClientRepository);
+                clientRegistrationRepository, authorizedClientRepository);
         authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
 
         return authorizedClientManager;
