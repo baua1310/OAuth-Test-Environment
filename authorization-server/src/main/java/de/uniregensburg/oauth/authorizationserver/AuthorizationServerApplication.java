@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AuthorizationServerApplication {
 
 	/**
-	* Start Spring Authorization Server
+	* Start spring authorization server
 	*
 	* @param  args  
 	*/

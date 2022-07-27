@@ -32,7 +32,7 @@ import java.util.UUID;
 public class AuthorizationServerConfig {
 
     /**
-     * apply default authorization server security filter chain 
+     * Apply default authorization server security filter chain 
      *
      * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/spring-authorization-server/src/main/java/com/baeldung/config/AuthorizationServerConfig.java
      *
@@ -85,7 +85,7 @@ public class AuthorizationServerConfig {
     }
 
     /**
-     * 
+     * Return jwk source
      * 
      * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/spring-authorization-server/src/main/java/com/baeldung/config/AuthorizationServerConfig.java
      * 
@@ -99,7 +99,7 @@ public class AuthorizationServerConfig {
 	}
 
     /**
-     *
+     * Generate RSA Key
      * 
      * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/spring-authorization-server/src/main/java/com/baeldung/config/AuthorizationServerConfig.java
      * 
@@ -116,7 +116,7 @@ public class AuthorizationServerConfig {
     }
 
     /**
-     *
+     * Generate RSA Key Pair
      * 
      * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/spring-authorization-server/src/main/java/com/baeldung/config/AuthorizationServerConfig.java
      * Source: https://docs.spring.io/spring-authorization-server/docs/current/reference/html/getting-started.html
@@ -136,7 +136,7 @@ public class AuthorizationServerConfig {
     }
 
     /**
-     *
+     * Register providers
      * 
      * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/spring-authorization-server/src/main/java/com/baeldung/config/AuthorizationServerConfig.java
      * 
