@@ -28,13 +28,17 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.UUID;
 
-/*
- * Source: https://github.com/Baeldung/spring-security-oauth/tree/master/oauth-authorization-server
- */
-
 @Configuration
 public class AuthorizationServerConfig {
 
+    /**
+     * apply default authorization server security filter chain 
+     *
+     * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/spring-authorization-server/src/main/java/com/baeldung/config/AuthorizationServerConfig.java
+     *
+     * @param   http
+     * @return  authorization server security filter chain
+     */
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authServerSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -42,6 +46,17 @@ public class AuthorizationServerConfig {
         return http.formLogin(Customizer.withDefaults()).build();
     }
 
+    /**
+     * Register clients 
+     *
+     * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/spring-authorization-server/src/main/java/com/baeldung/config/AuthorizationServerConfig.java
+     * Source: https://docs.spring.io/spring-authorization-server/docs/current/reference/html/getting-started.html
+     * 
+     * Modified: client id, scope, redirect uri
+     * Added: second client
+     * 
+     * @return  registered client repository with oauth clients
+     */
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
@@ -69,6 +84,13 @@ public class AuthorizationServerConfig {
         return new InMemoryRegisteredClientRepository(registeredClient, registeredClient2);
     }
 
+    /**
+     * 
+     * 
+     * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/spring-authorization-server/src/main/java/com/baeldung/config/AuthorizationServerConfig.java
+     * 
+     * @return  json web key source
+     */
     @Bean
 	public JWKSource<SecurityContext> jwkSource() {
         RSAKey rsaKey = generateRsa();
@@ -76,6 +98,13 @@ public class AuthorizationServerConfig {
 		return new ImmutableJWKSet<>(jwkSet);
 	}
 
+    /**
+     *
+     * 
+     * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/spring-authorization-server/src/main/java/com/baeldung/config/AuthorizationServerConfig.java
+     * 
+     * @return  rsa key
+     */
     private static RSAKey generateRsa() {
         KeyPair keyPair = generateRsaKey();
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
@@ -86,6 +115,14 @@ public class AuthorizationServerConfig {
             .build();
     }
 
+    /**
+     *
+     * 
+     * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/spring-authorization-server/src/main/java/com/baeldung/config/AuthorizationServerConfig.java
+     * Source: https://docs.spring.io/spring-authorization-server/docs/current/reference/html/getting-started.html
+     * 
+     * @return  rsa key pair
+     */
     private static KeyPair generateRsaKey() {
         KeyPair keyPair;
         try {
@@ -98,6 +135,13 @@ public class AuthorizationServerConfig {
         return keyPair;
     }
 
+    /**
+     *
+     * 
+     * Source: https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/spring-authorization-server/src/main/java/com/baeldung/config/AuthorizationServerConfig.java
+     * 
+     * @return  provider settings including one oauth resource server
+     */
     @Bean
 	public ProviderSettings providerSettings() {
 		return ProviderSettings.builder()
