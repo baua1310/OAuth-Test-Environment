@@ -58,6 +58,7 @@ public class TestAuthorizationCodeWithPKCEGrant {
             
         } catch (Exception e) {
             e.printStackTrace();
+            Assertions.assertTrue(false);
         } finally {
             if (driver != null) {
                 // close browser
@@ -96,7 +97,7 @@ public class TestAuthorizationCodeWithPKCEGrant {
             Assertions.assertTrue(driver.findElements(By.className("alert")).size() > 0);
 
             // get alert form
-            WebElement alert = driver.findElement(By.className("alert"));3
+            WebElement alert = driver.findElement(By.className("alert"));
             // get alert text
             String actual = alert.getText();
             // expected alert text
@@ -106,6 +107,7 @@ public class TestAuthorizationCodeWithPKCEGrant {
             
         } catch (Exception e) {
             e.printStackTrace();
+            Assertions.assertTrue(false);
         } finally {
             if (driver != null) {
                 // close browser
@@ -136,7 +138,7 @@ public class TestAuthorizationCodeWithPKCEGrant {
             WebElement signIn = driver.findElement(By.className("btn-primary"));
             // fill login form
             username.sendKeys("user");
-            password.sendKeys("wrong");
+            password.sendKeys("password");
             // submit login form
             signIn.click();
 
@@ -163,6 +165,7 @@ public class TestAuthorizationCodeWithPKCEGrant {
             
         } catch (Exception e) {
             e.printStackTrace();
+            Assertions.assertTrue(false);
         } finally {
             if (driver != null) {
                 // close browser

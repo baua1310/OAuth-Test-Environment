@@ -26,6 +26,7 @@ public class TestWebDriver {
             Assertions.assertEquals(expected, actual);
         } catch (Exception e) {
             e.printStackTrace();
+            Assertions.assertTrue(false);
         } finally {
             if (driver != null) {
                 // close browser

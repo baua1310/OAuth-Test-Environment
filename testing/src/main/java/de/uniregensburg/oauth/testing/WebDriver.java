@@ -17,7 +17,7 @@ public class WebDriver {
 
         // configure chrome
         ChromeOptions options = new ChromeOptions(); // new chrome options
-        options.addArguments("headless"); // run headless
+        // options.addArguments("headless"); // run headless
         options.addArguments("start-maximized"); // open Browser in maximized mode
         options.addArguments("disable-infobars"); // disabling infobars
         options.addArguments("--disable-extensions"); // disabling extensions
